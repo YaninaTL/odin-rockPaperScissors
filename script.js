@@ -1,4 +1,8 @@
 const animals = ["rabbit", "fox", "grass"];
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 0;
+let gameStarted = false; // Flag to track if the game has started
 
 function computerAnimal() {
   const randomIndex = Math.floor(Math.random() * animals.length);
@@ -13,63 +17,51 @@ function determineResult(userAnimal, compAnimal) {
     (userAnimal === "fox" && compAnimal === "rabbit") ||
     (userAnimal === "grass" && compAnimal === "fox")
   ) {
-    return "You win!";
+    computerScore++;
+    return `${capitalizeFirstLetter(
+      userAnimal
+    )} wins against ${capitalizeFirstLetter(compAnimal)}.`;
   } else {
-    return "Computer wins!";
+    playerScore++;
+    return `${capitalizeFirstLetter(
+      compAnimal
+    )} wins against ${capitalizeFirstLetter(userAnimal)}.`;
+  }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function updateScores() {
+  const roundDisplay = document.getElementById("roundNumber");
+  const scoreDisplay = document.getElementById("score");
+
+  roundDisplay.innerText = `${rounds}`;
+  scoreDisplay.innerText = `Player - ${playerScore}, Computer - ${computerScore}`;
+
+  if (rounds === 5) {
+    document.querySelector(
+      ".result"
+    ).innerText = `Player: ${playerScore} - Computer: ${computerScore}`;
   }
 }
 
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", function () {
-    const userAnimal = this.id;
-    const compAnimal = computerAnimal();
-    const result = determineResult(userAnimal, compAnimal);
-    let message = "";
+    if (!gameStarted) {
+      gameStarted = true;
+      rounds = 1; // Start the game
+      updateScores();
+    } else if (rounds < 5) {
+      const userAnimal = this.id;
+      const compAnimal = computerAnimal();
+      const result = determineResult(userAnimal, compAnimal);
 
-    if (result === "You win!") {
-      switch (userAnimal) {
-        case "rabbit":
-          message = "Rabbit wins against Grass.";
-          break;
-        case "fox":
-          message = "Fox wins against Rabbit.";
-          break;
-        case "grass":
-          message = "Grass wins against Fox.";
-          break;
-        default:
-          message = "Invalid selection.";
-      }
-    } else if (result === "Computer wins!") {
-      switch (compAnimal) {
-        case "rabbit":
-          message = "Rabbit wins against Grass.";
-          break;
-        case "fox":
-          message = "Fox wins against Rabbit.";
-          break;
-        case "grass":
-          message = "Grass wins against Fox.";
-          break;
-        default:
-          message = "Invalid selection.";
-      }
-    } else {
-      switch (userAnimal) {
-        case "rabbit":
-          message = "Rabbit and Rabbit!";
-          break;
-        case "fox":
-          message = "Fox and Fox!";
-          break;
-        case "grass":
-          message = "Grass and Grass!";
-          break;
-        default:
-          message = "It's a tie!";
-      }
+      document.querySelector(".result").innerText = `${result}`;
+
+      rounds++;
+      updateScores();
     }
-
-    document.querySelector(".result").innerText = `${result}\n${message}`;
   });
 });
