@@ -5,6 +5,11 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  background-image: url("./forest.jpg");
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center top; /* Adjust the value (50px in this case) to move the image down */
+  background-repeat: no-repeat;
+  background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
 .game {
@@ -29,4 +34,9 @@ body {
 .result {
   font-size: 24px;
   margin-top: 20px;
+}
+
+.btn img {
+  width: 100px; /* Adjust image size as needed */
+  height: auto;
 }
