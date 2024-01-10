@@ -36,44 +36,59 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Function to reset the game state
+// Function to reset the game state
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
+  gameStarted = false;
+  document.querySelector(".result").innerText = "Make your choice!";
+
+  // Reset the final result display
+  const finalResult = document.getElementById("finalResult");
+  finalResult.innerText = "";
+
+  // Update the round display to show the reset scores
+  const roundDisplay = document.getElementById("roundNumber");
+  roundDisplay.innerText = `You: ${playerScore}, Nature: ${computerScore}`;
+}
+
 // Function to update scores and round display
 function updateScores() {
   const roundDisplay = document.getElementById("roundNumber");
   roundDisplay.innerText = `You: ${playerScore}, Nature: ${computerScore}`;
 
-  if (playerScore + computerScore === 5) {
+  if (playerScore === 5 || computerScore === 5) {
     const modal = document.getElementById("myModal");
     const finalResult = document.getElementById("finalResult");
-    finalResult.innerText =
-      playerScore > computerScore ? "You win!" : "Sorry, nature wins.";
+    if (playerScore > computerScore) {
+      finalResult.innerText = "You win!";
+    } else if (playerScore < computerScore) {
+      finalResult.innerText = "Sorry, nature wins.";
+    } else {
+      finalResult.innerText = "It's a tie!";
+    }
 
     modal.style.display = "block";
 
-    // Close the modal when the close button is clicked
+    // Close the modal and reset the game when the close button is clicked
     const closeBtn = document.querySelector(".close");
     closeBtn.onclick = function () {
       modal.style.display = "none";
+      resetGame();
     };
+    // Event listener for the Esc key
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+        resetGame();
+      }
+    });
   }
 }
 
-// Event listeners for button clicks
-// document.querySelectorAll(".btn").forEach((button) => {
-//   button.addEventListener("click", function () {
-//     console.log("Button clicked");
-//     if (!gameStarted) {
-//       gameStarted = true;
-//       updateScores();
-//     } else {
-//       const userAnimal = this.id;
-//       const compAnimal = computerAnimal();
-//       const result = determineResult(userAnimal, compAnimal);
-
-//       document.querySelector(".result").innerText = result;
-//       updateScores();
-//     }
-//   });
-// });
+// Event listener for the first button click
 let firstButtonClick = true;
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", function () {
