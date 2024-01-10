@@ -16,6 +16,17 @@
         Rabbits are hunted by Foxes, and Rabbits need Grass to escape from
         Foxes.
       </p>
+      <p>To beat nature, choose wisely!</p>
+      <!-- MODAL -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <!-- <h2>Game Over</h2> -->
+          <p id="finalResult"></p>
+        </div>
+      </div>
+      <p class="result">Make your choice!</p>
+      <p class="round" id="roundNumber">You: 0, Nature: 0</p>
       <div class="choices">
         <button class="btn" id="grass">
           <img src="./grass.png" alt="Grass" />
@@ -27,8 +38,6 @@
           <img src="./fox.png" alt="Fox" />
         </button>
       </div>
-      <p class="result">Make your choice!</p>
-      <p class="round">Round: <span id="roundNumber">0</span>/5</p>
     </div>
 
     <script src="script.js"></script>

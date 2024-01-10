@@ -1,14 +1,16 @@
+// Constants
 const animals = ["rabbit", "fox", "grass"];
 let playerScore = 0;
 let computerScore = 0;
-let rounds = 0;
 let gameStarted = false; // Flag to track if the game has started
 
+// Function to generate computer's choice
 function computerAnimal() {
   const randomIndex = Math.floor(Math.random() * animals.length);
   return animals[randomIndex];
 }
 
+// Function to determine the result of each round
 function determineResult(userAnimal, compAnimal) {
   if (userAnimal === compAnimal) return "It's a tie!";
 
@@ -29,39 +31,61 @@ function determineResult(userAnimal, compAnimal) {
   }
 }
 
+// Function to capitalize the first letter of a string
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Function to update scores and round display
 function updateScores() {
   const roundDisplay = document.getElementById("roundNumber");
-  const scoreDisplay = document.getElementById("score");
+  roundDisplay.innerText = `You: ${playerScore}, Nature: ${computerScore}`;
 
-  roundDisplay.innerText = `${rounds}`;
-  scoreDisplay.innerText = `Player - ${playerScore}, Computer - ${computerScore}`;
+  if (playerScore + computerScore === 5) {
+    const modal = document.getElementById("myModal");
+    const finalResult = document.getElementById("finalResult");
+    finalResult.innerText =
+      playerScore > computerScore ? "You win!" : "Sorry, nature wins.";
 
-  if (rounds === 5) {
-    document.querySelector(
-      ".result"
-    ).innerText = `Player: ${playerScore} - Computer: ${computerScore}`;
+    modal.style.display = "block";
+
+    // Close the modal when the close button is clicked
+    const closeBtn = document.querySelector(".close");
+    closeBtn.onclick = function () {
+      modal.style.display = "none";
+    };
   }
 }
 
+// Event listeners for button clicks
+// document.querySelectorAll(".btn").forEach((button) => {
+//   button.addEventListener("click", function () {
+//     console.log("Button clicked");
+//     if (!gameStarted) {
+//       gameStarted = true;
+//       updateScores();
+//     } else {
+//       const userAnimal = this.id;
+//       const compAnimal = computerAnimal();
+//       const result = determineResult(userAnimal, compAnimal);
+
+//       document.querySelector(".result").innerText = result;
+//       updateScores();
+//     }
+//   });
+// });
+let firstButtonClick = true;
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", function () {
-    if (!gameStarted) {
+    if (firstButtonClick) {
+      firstButtonClick = false;
       gameStarted = true;
-      rounds = 1; // Start the game
-      updateScores();
-    } else if (rounds < 5) {
-      const userAnimal = this.id;
-      const compAnimal = computerAnimal();
-      const result = determineResult(userAnimal, compAnimal);
-
-      document.querySelector(".result").innerText = `${result}`;
-
-      rounds++;
-      updateScores();
     }
+    const userAnimal = this.id;
+    const compAnimal = computerAnimal();
+    const result = determineResult(userAnimal, compAnimal);
+
+    document.querySelector(".result").innerText = result;
+    updateScores();
   });
 });
