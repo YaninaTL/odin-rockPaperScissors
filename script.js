@@ -62,9 +62,9 @@ function updateScores() {
     const modal = document.getElementById("myModal");
     const finalResult = document.getElementById("finalResult");
     if (playerScore > computerScore) {
-      finalResult.innerText = "You win!";
+      finalResult.innerText = "You won!";
     } else if (playerScore < computerScore) {
-      finalResult.innerText = "Sorry, nature wins.";
+      finalResult.innerText = "Sorry, nature won.";
     } else {
       finalResult.innerText = "It's a tie!";
     }
