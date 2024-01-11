@@ -1,5 +1,7 @@
 body {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Black North Demo", sans-serif;
+  font-style: normal;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,13 +11,39 @@ body {
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center top; /* Adjust the value (50px in this case) to move the image down */
   background-repeat: no-repeat;
-  background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
 .game {
   text-align: center;
 }
 
+h1 {
+  font-size: 48px;
+  margin-top: -50px;
+}
+.description {
+  font-family: "Lemon", serif;
+}
+.first {
+  max-width: 600px;
+}
+.second {
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+.green {
+  color: #24714c;
+}
+.pinkish {
+  color: #f87666;
+}
+.orange {
+  color: #eb8436;
+}
+
+.round {
+  margin-top: -15px;
+}
 .choices {
   margin-top: 20px;
 }
