@@ -10,6 +10,6 @@ Grass Rabbit Fox is a variation of the well-known Rock Paper Scissors game.
 
 The player should choose Grass/Rabbit/Fox to fight the nature. Who gains first 5 points - wins. Have fun!
 
-![a game preview](https://ibb.co/vZd2Hmq"><img src="https://i.ibb.co/QrHsfnQ/Screenshot-2024-01-11-230927.png)
+![a game preview](https://i.ibb.co/QrHsfnQ/Screenshot-2024-01-11-230927.png)
 
 Feel free to adapt and expand this template based on the specific details and needs of your existing game project.
