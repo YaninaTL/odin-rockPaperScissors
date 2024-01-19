@@ -1,5 +1,5 @@
 body {
-  font-family: "Black North Demo", sans-serif;
+  font-family: "Berkshire Swash", serif;
   font-style: normal;
   font-weight: 400;
   display: flex;
@@ -22,7 +22,7 @@ h1 {
   margin-top: -50px;
 }
 .description {
-  font-family: "Lemon", serif;
+  font-family: "Berkshire Swash", serif;
 }
 .first {
   max-width: 600px;
